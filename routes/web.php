@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::prefix('reservation')->middleware('auth')->group(function(){
+
+    Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation_list', [ReservationController::class, 'reservation_list'])->name('reservation.reservation_list');
+    Route::post('/', [ReservationController::class, 'store'])->name('reservation.store');
+
+});
 
 Route::get('/', function () {
     return view('welcome');
