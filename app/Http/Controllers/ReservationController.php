@@ -19,8 +19,6 @@ class ReservationController extends Controller
 
     public function store(Request $request) {
 
-        // TODO: バリデーションは省略しています
-
         $reservation = new Reservation();
         $reservation->user_id = auth()->id();
         $reservation->room_id = $request->room_id;
